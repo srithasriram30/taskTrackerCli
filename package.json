@@ -1,0 +1,21 @@
+{
+  "name": "tasktrackercli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srithasriram30/taskTrackerCli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srithasriram30/taskTrackerCli/issues"
+  },
+  "homepage": "https://github.com/srithasriram30/taskTrackerCli#readme"
+}
