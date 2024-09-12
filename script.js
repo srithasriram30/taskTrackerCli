@@ -3,7 +3,12 @@ import * as fs from "fs";
 
 
 let getTasks = () => {
-    console.log(tasks)
+    tasks.forEach(task => {
+        console.log(`Task ${task.id}: ${task.description}`);
+        console.log(`Status: ${task.status}`)
+        // console.log()
+        // console.log()
+    })
 }
 
 let getTasksByStatus = (status) => {
@@ -21,7 +26,7 @@ let addTask = (task) => {
        
     
     let newTask = {
-        id: tasks.length + 1,
+        id: tasks[tasks.length-1].id + 1,
         description: task,
         status: "To do",
         createdAt: new Date().toJSON(),
@@ -45,15 +50,24 @@ let addTask = (task) => {
 
 let changeStatus = (id, status) => {
     try{
+        let index = -1
         for(let i=0; i< tasks.length;i++){
             let task = tasks[i]
             if(task.id === id) {
-                task.status = status,
-                task.updatedAt= new Date().toJSON()
+                task.status = status;
+                task.updatedAt= new Date().toJSON();
+                index = i;
+                break;
             }
         }
-        const changedStatus = JSON.stringify(tasks);
-        fs.writeFileSync('tasks.json', changedStatus);
+
+        if(index !== -1) {
+            const changedStatus = JSON.stringify(tasks);
+            fs.writeFileSync('tasks.json', changedStatus);
+        } else {
+            console.log('Task not found, enter a different id')
+        }
+        
     } catch(error) {
         console.log(error)
     }
@@ -62,6 +76,55 @@ let changeStatus = (id, status) => {
    
 }
 
-changeStatus(1, 'Completed');
-changeStatus(2, 'In progress');
+let updateTask = (id, update) => {
+    try {
+        let index = -1;
+        for (let i = 0; i < tasks.length; i++) {
+            let task = tasks[i];
+
+            if(task.id === id){
+                task.description = update;
+                task.updatedAt = new Date().toJSON();
+                index = i;
+                break;
+            }
+            
+        }
+        if(index !== -1) {
+            const updated = JSON.stringify(tasks);
+            fs.writeFileSync('tasks.json', updated)
+        }  else {
+            console.log('Task not found, enter a different id')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+let deleteTask = (id) => {
+    try {
+        let index = -1;
+        for (let i = 0; i < tasks.length; i++) {
+            let task = tasks[i];
+
+            if(task.id === id){
+                index = i;
+                break;
+            }
+            
+        }
+        if(index !==-1){
+            let finalTasks = tasks.splice(index,1);
+            const deleted = JSON.stringify(finalTasks)
+            fs.writeFileSync('tasks.json', deleted)
+        } else {
+            console.log('Task not found, enter a different id')
+        }
+        
+    } catch (error) {
+        
+    }
+}
+
+deleteTask(6)
 getTasks();
