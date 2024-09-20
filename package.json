@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/srithasriram30/taskTrackerCli/issues"
   },
-  "homepage": "https://github.com/srithasriram30/taskTrackerCli#readme"
+  "homepage": "https://github.com/srithasriram30/taskTrackerCli#readme",
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
 }
