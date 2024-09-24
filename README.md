@@ -1,6 +1,6 @@
 # Task Tracker
 
-This is my sample solution[https://github.com/srithasriram30/taskTrackerCli] for the task-tracker[https://roadmap.sh/projects/task-tracker] challenge from roadmap.sh
+This is my sample [solution](https://github.com/srithasriram30/taskTrackerCli) for the [task-tracker](https://roadmap.sh/projects/task-tracker) challenge from roadmap.sh
 
 # Prerequsites
 
