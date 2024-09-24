@@ -3,8 +3,6 @@ import * as commander from 'commander';
 const program = new commander.Command();
 import * as fs from "fs";
 
-
-
 let getAllTasks = () => {
     if(tasks.length===0) 
         console.log('No tasks available');
@@ -12,8 +10,8 @@ let getAllTasks = () => {
          tasks.forEach(task => {
         console.log(`Task ${task.id}: ${task.description}`);
         console.log(`Status: ${task.status}`)
-        // console.log()
-        // console.log()
+        console.log(`Added: ${new Date(task.createdAt).toLocaleDateString()} ${new Date(task.createdAt).toLocaleTimeString()}`)
+        console.log(`Last modified: ${new Date(task.updatedAt).toLocaleDateString()} ${new Date(task.createdAt).toLocaleTimeString()}`)
     })
    
     }
@@ -33,13 +31,15 @@ let getTasksByStatus = (status) => {
     console.log(tasksByStatus)
 }
 
-let addTask = (task) => {
+let addTask = (description) => {
+    
+    
     try{
        let taskid = tasks.length === 0 ? 1: tasks[tasks.length-1].id + 1 
     
     let newTask = {
         id: taskid,
-        description: task,
+        description,
         status: "To do",
         createdAt: new Date().toJSON(),
         updatedAt: new Date().toJSON()
@@ -139,6 +139,8 @@ let deleteTask = (id) => {
     }
 }
 
+
+
 let main = () => {
 
 
@@ -156,7 +158,10 @@ let main = () => {
     .command('add <description>')
     .description('Add task')
     .action((description) => {
-        addTask(description)
+        
+            addTask(description)
+        
+        
     })
 
     program
